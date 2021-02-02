@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+         <td><%= link_to post.title, post.url, target: :blank %> - <i> published_at <%= time_ago_in_words(post.published_at) %> ago.</i></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

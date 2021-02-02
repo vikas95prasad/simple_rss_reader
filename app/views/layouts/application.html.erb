@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SimpleRssReader</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <h1 class='main-header'>Welcome To Simple RSS Feed APP !!!</h1></br>
+    </h3>
+    <div class='menu-items'>
+      <h2><%= link_to 'Feeds', feeds_path %><h1>
+      <h2 class='menu-items-list'><%= link_to 'Posts', posts_path %><h1></br>
+      <h2 class='menu-items-list'><%= link_to 'Help', home_help_path %><h1></br>
+    </div>
+    <%= yield %>
+  </body>
+</html>

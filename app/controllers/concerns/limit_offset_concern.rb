@@ -4,15 +4,12 @@ require 'active_support/concern'
 
 module LimitOffsetConcern
   extend ActiveSupport::Concern
+  LIMIT = 10
 
   protected
 
-  def set_limit_and_offset_default
-    @limit = (params[:limit] || self.class.limit_offset_options[:limit_default]).to_i
-    @offset = (params[:offset].presence.to_i || self.class.limit_offset_options[:offset_default]).to_i
-  rescue StandardError
-    render json: { message: 'Invalid params: Limit or Offset.' },
-           status: :unprocessable_entity
+  def current_page
+    @page = params.fetch(:page, 0).to_i
   end
 
   def limit
@@ -21,6 +18,24 @@ module LimitOffsetConcern
 
   def offset
     @offset
+  end
+
+  def set_limit_and_offset_default
+    @limit = fetch_limit
+    @offset = fetch_offset
+  rescue StandardError
+    render json: { message: 'Invalid params: Limit or Offset.' },
+           status: :unprocessable_entity
+  end
+
+  def fetch_offset
+    (current_page * limit ||
+      params[:offset] ||
+      self.class.limit_offset_options[:offset_default]).to_i
+  end
+
+  def fetch_limit
+    (params[:limit] || self.class.limit_offset_options[:limit_default]).to_i
   end
 
   class_methods do

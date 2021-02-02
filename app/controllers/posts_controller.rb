@@ -5,9 +5,10 @@ class PostsController < ApplicationController
 
   has_limit_offset_constraints only: [
     :index
-  ], limit_default: 15, offset_default: 0
+  ], limit_default: 10, offset_default: 0
 
   def index
+    @page = current_page
     @posts = Post.recents.limit(limit).offset(offset)
   end
 end

@@ -1,24 +1,13 @@
-# README
+Stack Details,
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Ruby version: (2.5.1)
+2. Rails version: (6.1.0)
+3. Puma (5.1.1)
 
-Things you may want to cover:
+Instruction to run the app,
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. rails db:create
+2. rails db:migrate
+3. rails s 
+4. Navigate to the Help section, to know the list of valid feed urls.
+5. Adding a feed url, would pull posts automatically in the background.

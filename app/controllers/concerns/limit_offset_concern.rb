@@ -4,12 +4,14 @@ require 'active_support/concern'
 
 module LimitOffsetConcern
   extend ActiveSupport::Concern
-  LIMIT = 10
+  DEFAULT_LIMIT = 10
+  DEFAULT_OFFSET = 0
 
   protected
 
   def current_page
-    @page = params.fetch(:page, 0).to_i
+    page_number = params.fetch(:page, 0).to_i
+    page_number.negative? ? 0 : page_number
   end
 
   def limit
@@ -47,8 +49,8 @@ module LimitOffsetConcern
 
     def default_options
       {
-        limit_default: 10,
-        offset_default: 0
+        limit_default: DEFAULT_LIMIT,
+        offset_default: DEFAULT_OFFSET
       }
     end
   end

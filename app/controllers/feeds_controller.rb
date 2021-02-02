@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 class FeedsController < ApplicationController
+  include LimitOffsetConcern
+
+  has_limit_offset_constraints only: [
+    :index
+  ], limit_default: 10, offset_default: 0
+
   before_action :set_feed, only: %w[show edit update destroy]
 
   def index
+    @page = current_page
     @feeds = Feed.all
   end
 

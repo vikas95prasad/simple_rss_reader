@@ -19,8 +19,4 @@
   </tbody>
 </table>
 
-<div class='pagination'>
-  <%= link_to_if (@page != 0), "Last Page", posts_path(page: @page - 1) %> 
-  | 
-  <%= link_to_if (@posts.present?), "Next Page", posts_path(page: @page + 1) %> 
-</div>
+<%= render template: "pagination/index", object: @page %>

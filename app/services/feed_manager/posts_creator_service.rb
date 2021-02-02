@@ -9,7 +9,7 @@ module FeedManager
     end
 
     def call
-      validator = ::FeedManager::PostsCreatorValidator.new(@opts)
+      validator = FeedManager::PostsCreatorValidator.new(@opts)
       if validator.valid?
         pull_posts_from_feed_url
 
